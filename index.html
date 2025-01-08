@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Helps the browser identify support for mobile applications -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Title on the browser tab -->
+    <title>WebGIS</title>
+    <!-- Leaflet CSS Library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <!-- Leaflet JavaScript Library -->
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <!-- Style for the fullscreen map display -->
+    <style>
+      html,
+      body,
+      #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HTML Block to display the map -->
+    <div id="map"></div>
+
+    <script>
+      // Initialize the map
+      var map = L.map("map").setView([-7.9, 110.45], 10); // lat, long, zoom
+
+      // Define basemap layers
+      var basemap0 = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      });
+
+      var Esri_WorldImagery = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+        attribution: "Cesar Fadil Kanz &copy; &mdash; 23611088 Satistika Universitas",
+      });
+
+      var OpenTopoMap = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+        maxZoom: 17,
+        attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a>',
+      });
+
+      // Add a default basemap to the map
+      Esri_WorldImagery.addTo(map);
+
+      // Control Layer for switching basemaps
+      var baseMaps = {
+        "Open Street Map": basemap0,
+        "Open Topo Map": OpenTopoMap,
+        "Esri World Imagery": Esri_WorldImagery,
+      };
+
+      var overlayMaps = {}; // Empty object for now, can add overlays later
+
+      var layerControl = L.control.layers(baseMaps, overlayMaps, { collapsed: false });
+      layerControl.addTo(map);
+
+      // Custom marker
+      var customIcon1 = L.icon({
+        iconUrl: "https://www.freeiconspng.com/uploads/maps-icon-11.png",
+        iconSize: [40, 40],
+      });
+      var marker0 = L.marker([-7.6874832621204545, 110.41543590276083], { icon: customIcon1 });
+      marker0.addTo(map);
+
+      var marker1 = L.marker([-7.836756262510862, 110.15314947988749]); // you can change the coordinate
+      marker1.bindPopup("Al-Huda Gebangan Mosque");
+      marker1.addTo(map);
+      marker1.openPopup();
+      marker1.bindTooltip("Jl. Pengasih - Sermo No.184, Timpang, Pengasih, Kec. Pengasih, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55652");
+
+      var marker2 = L.marker([-7.829556582108897, 110.16863455879394]); // you can change the coordinate
+      marker2.bindPopup("Masjid Al-Hidayah");
+      marker2.addTo(map);
+      marker2.openPopup();
+      marker2.bindTooltip("5588+GMF, Serang, Sendangsari, Kec. Pengasih, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55652");
+
+      var marker3 = L.marker([-7.837605178711609, 110.17048819699927]); // you can change the coordinate
+      marker3.bindPopup("Masjid Agung Pengasih");
+      marker3.addTo(map);
+      marker3.openPopup();
+      marker3.bindTooltip("5559+25J, Pengasih, Kec. Pengasih, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55652");
+
+      var marker4 = L.marker([-7.849697791999342, 110.17546091352654]); // you can change the coordinate
+      marker4.bindPopup("Masjid Nurul Iman");
+      marker4.addTo(map);
+      marker4.openPopup();
+      marker4.bindTooltip("45WF+7MC, Karang Tengah Kidul, Margosari, Kec. Pengasih, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55652");
+
+      var marker5 = L.marker([-7.863581699160796, 110.18044781211819]); // you can change the coordinate
+      marker5.bindPopup("Masjid Asy-Syams");
+      marker5.addTo(map);
+      marker5.openPopup();
+      marker5.bindTooltip("45MJ+655, Ngramang, Kedungsari, Kec. Pengasih, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55652");
+
+      var marker6 = L.marker([-7.859775401801796, 110.1754688512315]); // you can change the coordinate
+      marker6.bindPopup("Masjid Polres Kulon Progo");
+      marker6.addTo(map);
+      marker6.openPopup();
+      marker6.bindTooltip("45MG+M44, Ngramang, Kedungsari, Kec. Pengasih, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55652");
+
+      var marker7 = L.marker([-7.86268859442044, 110.16619382893224]); // you can change the coordinate
+      marker7.bindPopup("Masjid Al Hidayah");
+      marker7.addTo(map);
+      marker7.openPopup();
+      marker7.bindTooltip("45M9+G4V, National Rte 3, Gn. Gempal, Giri Peni, Wates, Kulon Progo Regency, Special Region of Yogyakarta 55651");
+
+      var marker8 = L.marker([-7.862689456226221, 110.16144416445151]); // you can change the coordinate
+      marker8.bindPopup("Masjid Al Hidayah Durungan");
+      marker8.addTo(map);
+      marker8.openPopup();
+      marker8.bindTooltip("45M6+8C9, Jl. Kolonel Sugiono, Kedungdowo, Wates, Kec. Wates, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55651");
+
+      var marker9 = L.marker([-7.868741033071026, 110.15152267256826]); // you can change the coordinate
+      marker9.bindPopup("Masjid Ath-Thohiroh");
+      marker9.addTo(map);
+      marker9.openPopup();
+      marker9.bindTooltip("45G2+X64, Kedung Pring, Giri Peni, Wates, Kulon Progo Regency, Special Region of Yogyakarta 55651");
+
+      var marker10 = L.marker([-7.881954484478942, 110.14450274740831]); // you can change the coordinate
+      marker10.bindPopup("MMasjid Al Islam");
+      marker10.addTo(map);
+      marker10.openPopup();
+      marker10.bindTooltip("448W+RH3, Sanggrahan Lor, Bendungan, Wates, Kulon Progo Regency, Special Region of Yogyakarta 55651");
+    </script>
+  </body>
+</html>
